@@ -4,6 +4,9 @@ $(document).ready(function () {
         date = $(".date"),
         daysContainer = $(".days"),
         prev = $(".prev"),
+        todayBtn = $(".today-btn"),
+        gotoBtn = $(".goto-btn"),
+        dateInput = $(".date-input"),
         next = $(".next")
 
     let today = new Date();
@@ -58,7 +61,7 @@ $(document).ready(function () {
             }
         }
         //next month days
-        for (let x = 1; x < nextDays; x++) {
+        for (let x = 1; x <= nextDays; x++) {
             days += `<div class="day next-date">${x}</div>`
         }
         daysContainer.html(days)
@@ -87,6 +90,15 @@ $(document).ready(function () {
     prev.on('click', this, prevMonth)
     next.on('click', this, nextMonth)
 
-    //Add go to date
-    
+    //Add go to date and today
+    todayBtn.on('click', this, function () {
+        today = new Date();
+        month = today.getMonth();
+        year = today.getFullYear();
+        initCalendar()
+    })
+    dateInput.on('keyup', this, function (e) {
+        // allow only number
+        dateInput.val(dateInput.val().replace(/[^0-9/]/g), "")
+    })
 });
