@@ -43,12 +43,19 @@ function initCalendar() {
     let days = ""
     //prev month days
     for (let x = day; x > 0; x--) {
-        days = `<div class="day pre-date">${prevDays - x + 1}</div>`
+        days += `<div class="day pre-date">${prevDays - x + 1}</div>`
     }
     //current month
+    console.log(lastDate)
     for (let x = 1; x < lastDate; x++) {
         //if day is today add class today
-        
+        if (x == new Date().getDate() && year == new Date().getFullYear() && month == new Date().getMonth()) {
+            days += `<div class="day today">${x}</div>`
+        }
+        //remaining of days
+        else {
+            days += `<div class="day">${x}</div>`
+        }
     }
     daysContainer.html(days)
 }
