@@ -1,0 +1,310 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>BOOKING</title>
+    <link type="image/x-icon" rel="shortcut icon" href="../image/logo/logo.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../vendors/alertifyjs/css/alertify.min.css" />
+    <link rel="stylesheet" href="../vendors/alertifyjs/css/themes/default.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" type="text/css" href="../vendors/Semantic/semantic.css" />
+    <link rel="stylesheet" href="../vendors/fontawesome/css/all.css" />
+    <link href="../CSS/style.css" rel="stylesheet" />
+    <link href="../CSS/animista.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="dist/tui-calendar.css">
+    <link rel="stylesheet" type="text/css" href="./css/icons.css">
+    <link rel="stylesheet" type="text/css" href="./css/default.css">
+    <link rel="stylesheet" href="./css/popup.css">
+    <link rel="stylesheet" href="./css/displayImg.css">
+    <!-- <link rel="stylesheet" href="css/calendar.css"> -->
+    <link href="#" rel="stylesheet" id="theme" />
+    <style>
+        .table {
+            margin-bottom: 0;
+        }
+
+        .tui-full-calendar-month-creation-guide {
+            top: 0;
+            bottom: -1px;
+            left: -1px;
+            right: 0;
+            position: absolute;
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="top">
+            RESERVATIONS
+        </div>
+        <div id="lnb">
+            <div class="lnb-new-schedule">
+                <button id="btn-return" type="button" class="btn btn-default btn-block lnb-new-schedule-btn"
+                    data-toggle="modal">
+                    Retour à la liste</button>
+            </div>
+            <div id="lnb-calendars" class="lnb-calendars">
+                <div>
+                    <div class="lnb-calendars-item">
+                        <label>
+                            <input class="tui-full-calendar-checkbox-square" type="checkbox" value="all" checked>
+                            <span></span>
+                            <strong>Voir tout</strong>
+                        </label>
+                    </div>
+                </div>
+                <div id="calendarList" class="lnb-calendars-d1">
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <div id="menu">
+                <span class="dropdown">
+                    <button id="dropdownMenu-calendarType" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <i id="calendarTypeIcon" class="calendar-icon ic_view_month" style="margin-right: 4px;"></i>
+                        <span id="calendarTypeName">la liste</span>&nbsp;
+                        <i class="calendar-icon tui-full-calendar-dropdown-arrow"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-calendarType">
+                        <li role="presentation">
+                            <a class="dropdown-menu-title" role="menuitem" data-action="toggle-daily">
+                                <i class="calendar-icon ic_view_day"></i>DE TOUS LES JOURS
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weekly">
+                                <i class="calendar-icon ic_view_week"></i>DE LA SEMAINE
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a class="dropdown-menu-title" role="menuitem" data-action="toggle-monthly">
+                                <i class="calendar-icon ic_view_month"></i>Mensuel
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weeks2">
+                                <i class="calendar-icon ic_view_week"></i>Deux semaines
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weeks3">
+                                <i class="calendar-icon ic_view_week"></i>trois semaines
+                            </a>
+                        </li>
+                        <li role="presentation" class="dropdown-divider"></li>
+                        <li role="presentation">
+                            <a role="menuitem" data-action="toggle-workweek">
+                                <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-workweek"
+                                    checked>
+                                <span class="checkbox-title"></span>Afficher les week-ends
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" data-action="toggle-start-day-1">
+                                <input type="checkbox" class="tui-full-calendar-checkbox-square"
+                                    value="toggle-start-day-1">
+                                <span class="checkbox-title"></span>Le début de la semaine le lundi
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" data-action="toggle-narrow-weekend">
+                                <input type="checkbox" class="tui-full-calendar-checkbox-square"
+                                    value="toggle-narrow-weekend">
+                                <span class="checkbox-title"></span>d'un jour de semaine normal
+                            </a>
+                        </li>
+                    </ul>
+                </span>
+                <span id="menu-navi">
+                    <button type="button" class="btn btn-default btn-sm move-today"
+                        data-action="move-today">Aujourd'hui</button>
+                    <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                        <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
+                        <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm move-day"
+                        style="float: right;color:black;font-size: 8px;" id="plus">➕
+                    </button>
+                    <button type="button" class="btn btn-default" style="display:flex;margin:-35px auto ;" id="dispo">
+                        Les chambre Disponible
+                    </button>
+                </span>
+                <span id="renderRange" class="render-range"></span>
+            </div>
+
+            <div id="calendar"></div>
+            <div id="calendar-popup" class="oe_hidden"
+                style="display: block;position: relative;background: rgba(255, 255, 255, 0.5);height: 90%;">
+                
+            </div>
+            <div id="popup" class="overlay light oe_hidden">
+                <a class="cancel" href="#"></a>
+                <div class="popups">
+                    <a class="close" href="#">&times;</a>
+                    <div class="containers">
+                        <header class="header">Ajouter un Client</header>
+                        <form action="#">
+                            <div class="form first">
+                                <div class="details personal">
+                                    <span class="title"> </span>
+
+                                    <div class="fields">
+                                        <div class="input-field">
+                                            <label>Nom :</label>
+                                            <input type="text" placeholder="Entrer le nom" id="nom">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Prénom :</label>
+                                            <input type="text" placeholder="Entrer le prenom" id="prenom">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>CNE :</label>
+                                            <input type="text" placeholder="Numero de carte  " id="cne">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Numéro de téléphone :</label>
+                                            <input type="text" placeholder="Enter mobile number" id="tel">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Date de Naissance :</label>
+                                            <div class="ui calendar" style="margin-bottom: 5px;">
+                                                <div class="ui input left icon type_date">
+                                                    <i class="calendar icon"></i>
+                                                    <input type="text" id="dateNai" placeholder="Date de Naissance"
+                                                        autocomplete="off" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Lieu de Naissance :</label>
+                                            <input type="text" placeholder="Lieu Naissance" id="lieuNai">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Genre :</label>
+                                            <select id="sexe">
+                                                <option disabled selected>sélectionnez le sexe</option>
+                                                <option>Homme</option>
+                                                <option>Femme</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Nationalité :</label>
+                                            <input type="text" placeholder="Nationalite" id="natio">
+                                        </div>
+
+                                        <div class="input-field">
+                                            <label>Profession :</label>
+                                            <input type="text" placeholder="Profession" id="profe">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Domicile Habituel :</label>
+                                            <input type="text" placeholder="Domcile Habituel" id="domHab">
+                                        </div>
+                                        <div class="input-field">
+                                            <label>Sélectionner un fichier :</label>
+                                            <input class="form-control form-control-lg" id="fileUpload"
+                                                data-buttonText="➕" type="file"
+                                                accept="image/jpeg,image/gif,image/png,application/pdf" multiple />
+                                        </div>
+                                    </div>
+                                    <button class="nextBtn button" type="button">
+                                        <span class="btnText">Ajouter</span>
+                                        <i class="uil uil-navigator"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="popup2" class="overlay light oe_hidden">
+                <a class="cancel" href="#"></a>
+                <div class="popups">
+                    <a class="close" href="#">&times;</a>
+                    <header class="header">Les Chambre Disponible</header>
+                    <table style="margin: auto;max-width: 450px;width: 100%;">
+                        <tr>
+                            <td>
+                                <div class="input-field">
+                                    <label>Date d'arrive:</label>
+                                    <div class="ui calendar" style="margin-bottom: 5px;">
+                                        <div class="ui input left icon type_date">
+                                            <i class="calendar icon"></i>
+                                            <input type="text" id="dateStart" placeholder="Date d'arrive"
+                                                autocomplete="off" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-field">
+                                    <label>Date de sortir:</label>
+                                    <div class="ui calendar" style="margin-bottom: 5px;">
+                                        <div class="ui input left icon type_date">
+                                            <i class="calendar icon"></i>
+                                            <input type="text" id="dateEnd" placeholder="Date de sortir"
+                                                autocomplete="off" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button style="margin-top: 44px;padding:0 10px;" class="button" type="button"
+                                    id="search">
+                                    <span class="btnText"></span>
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- <div class="carousel-container">
+                </div> -->
+                    <ul class="card-list">
+                    </ul>
+                </div>
+            </div>
+            
+            <script src="js/jquery-2.1.1.min.js"></script>
+            <script src="../js/jquery-ui.min.js"></script>
+            <script src="../vendors/alertifyjs/alertify.min.js"></script>
+            <script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+            <script src="../js/moment.js"></script>
+            <script src="../vendors/alertifyjs/alertify.min.js"></script>
+            <script type="text/javascript" src="../vendors/DataTables/datatables.min.js"></script>
+            <script src="../js/xlsx.full.min.js"></script>
+            <script src="../js/jquery.table2excel.min.js"></script>
+            <script type="text/javascript"
+                src="../vendors/DataTables/KeyTable-2.5.2/js/dataTables.keyTable.min.js"></script>
+            <script type="text/javascript" src="../vendors/Semantic/semantic.js"></script>
+            <script type="text/javascript" src="../js/global.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/2.1.0/bootstrap-filestyle.min.js"
+                integrity="sha512-HfRdzrvve5p31VKjxBhIaDhBqreRXt4SX3i3Iv7bhuoeJY47gJtFTRWKUpjk8RUkLtKZUhf87ONcKONAROhvIw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
+            <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
+            <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+            <script src="dist/tui-calendar.js"></script>
+            <script src="./js/data/calendars.js"></script>
+            <script src="./js/data/schedules.js"></script>
+            <script src="js/data/popup.js"></script>
+            <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>

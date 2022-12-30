@@ -425,7 +425,7 @@ body {
 }
 
 .add-event-wrapper.active {
-  max-height: 300px;
+  max-height: 400px;
 }
 
 .add-event-header {
