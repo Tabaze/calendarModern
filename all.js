@@ -6,7 +6,7 @@ $(document).ready(function () {
         prev = $(".prev"),
         todayBtn = $(".today-btn"),
         gotoBtn = $(".goto-btn"),
-        dateInput = $(".date-input"),
+        dateInput = document.querySelector(".date-input"),
         next = $(".next")
 
     let today = new Date();
@@ -97,10 +97,29 @@ $(document).ready(function () {
         year = today.getFullYear();
         initCalendar()
     })
-    dateInput.on('keyup', this, function (e) {
+    dateInput.addEventListener('input', function (e) {
         // allow only number
-        dateInput.val(dateInput.val().replace(/[^0-9/]/g, ""))
-        if (dateInput.val().length == 2)
-            dateInput.val(dateInput.val() + '/')
+        dateInput.value = dateInput.value.replace(/[^0-9/]/g, "")
+        if (dateInput.value.length == 2)
+            dateInput.value += '/'
+        if (dateInput.value.length > 7)
+            dateInput.value = dateInput.value.slice(0, 7)
+        if (e.inputType == "deleteContentBackward") {
+            if (dateInput.value.length === 3)
+                dateInput.value = dateInput.value.slice(0, 2)
+        }
+    })
+    gotoBtn.on('click', this, function(){
+        const dateArr = dateInput.value.split('/')
+        if (dateArr.length == 2) {
+            if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length == 4) {
+                month = dateArr[0] - 1
+                year=dateArr[1]
+                initCalendar()
+                return
+            }
+        }
+        //invalid date
+        alert("Date incorrect")
     })
 });
