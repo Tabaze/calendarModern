@@ -45,7 +45,7 @@ img {
     padding: 0 2rem; */
     text-decoration: none;
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     transition: all .4s;
 }
 .menu_link.selected {
@@ -189,6 +189,7 @@ ul {
 .navbar .nav_right ul li img {
     width: 35px;
     vertical-align: middle;
+    height: 35px;
 }
 
 .navbar .dd_menu {
@@ -244,16 +245,16 @@ ul {
     width: 100%;
     border-radius: 5px;
     box-shadow: -1px -1px 50px 6px rgba(138, 138, 138, 0.61);
-    margin: 2px;
+    margin: 0px;
     transition: 5s ease;
 }
 
 .navbar .dropdown-menu .dropdown-item {
     display: inline-block;
     position: relative;
-    padding: 15px 20px;
+    padding: 15px 15px;
     /* color: #fff; */
-    font-size: 1.4rem;
+    font-size: 0.8rem;
     border-bottom: 1px solid rgba(255, 255, 255, .1);
     transition: color 0.2s ease-in;
 }
