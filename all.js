@@ -99,6 +99,8 @@ $(document).ready(function () {
     })
     dateInput.on('keyup', this, function (e) {
         // allow only number
-        dateInput.val(dateInput.val().replace(/[^0-9/]/g), "")
+        dateInput.val(dateInput.val().replace(/[^0-9/]/g, ""))
+        if (dateInput.val().length == 2)
+            dateInput.val(dateInput.val() + '/')
     })
 });
