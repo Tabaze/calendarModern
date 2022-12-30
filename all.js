@@ -83,5 +83,10 @@ $(document).ready(function () {
         }
         initCalendar()
     }
+    //add event next and previous to buttons
+    prev.on('click', this, prevMonth)
+    next.on('click', this, nextMonth)
 
+    //Add go to date
+    
 });
