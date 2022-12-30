@@ -41,7 +41,7 @@ let today = new Date(),
     activeDay,
     month = today[_0x42bd25(0xd5)](),
     year = today["getFullYear"]();
-const months = [_0x42bd25(0xae), _0x42bd25(0xdb), _0x42bd25(0xdd), "April", _0x42bd25(0xf8), _0x42bd25(0xd6), _0x42bd25(0xb1), "August", "September", "October", "November", "December"],
+const months = [_0x42bd25(0xae), _0x42bd25(0xdb), _0x42bd25(0xdd), "April", _0x42bd25(0xf8), _0x42bd25(0xd6), _0x42bd25(0xb1), "August", "September", "October", "November", "Décembre"],
     eventsArr = [];
 getEvents(), console[_0x42bd25(0xfc)](eventsArr);
 function initCalendar() {
