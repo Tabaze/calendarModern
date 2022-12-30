@@ -22,12 +22,12 @@
 
 body {
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   background-color: #373c4f;
 }
-.container {
+.containers {
     position: relative;
     width: 100%;
     z-index: 1;
@@ -38,7 +38,7 @@ body {
     color: #fff;
     display: flex;
     /* border-radius: 10px; */
-    background-color: #373c4f;
+    /* background-color: #373c4f; */
 }
 .left {
   width: 60%;
