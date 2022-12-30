@@ -238,7 +238,7 @@ function _0x171c() {
         "7340211mOmREl",
         "<div\x20class=\x22day\x20today\x20active\x22>",
         ".event-time-to\x20",
-        "A\x20Project\x20By\x20<a\x20href=\x27#\x27\x20target=_blank>Open\x20Source\x20Coding</a>",
+        "",
         "forEach",
         "691935tzzlLq",
         "Please\x20fill\x20all\x20the\x20fields",

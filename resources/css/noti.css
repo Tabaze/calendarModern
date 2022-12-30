@@ -53,6 +53,7 @@
 }
 
 .notifications.open {
+    z-index: 9;
     opacity: 1;
     transition: 0.2s;
 }
