@@ -28,7 +28,23 @@ $(document).ready(function () {
         "Novembre",
         "Décembre"
     ];
-
+    const eventList = [
+        {
+            day: 1,
+            month: 1,
+            year: 2023,
+            events: [
+                {
+                    title: "Event 1",
+                    time: "10:00 AM"
+                },
+                {
+                    title: "Event 1",
+                    time: "10:00 AM"
+                },
+            ]
+        }
+    ]
 
     function initCalendar() {
         //to get all prev month days and currnets month all days and rem next month days
@@ -51,13 +67,29 @@ $(document).ready(function () {
         }
         //current month
         for (let x = 1; x <= lastDate; x++) {
+            let event = false;
+            eventList.forEach((even) => {
+                if (even.day == x && even.month == month + 1 && even.year == year) {
+                    event = true;
+                }
+            })
+
+
             //if day is today add class today
             if (x == new Date().getDate() && year == new Date().getFullYear() && month == new Date().getMonth()) {
-                days += `<div class="day today">${x}</div>`
+                if (event) {
+                    days += `<div class="day today event">${x}</div>`
+                }
+                else
+                    days += `<div class="day today">${x}</div>`
             }
             //remaining of days
             else {
-                days += `<div class="day">${x}</div>`
+                if (event) {
+                    days += `<div class="day event">${x}</div>`
+                }
+                else
+                    days += `<div class="day">${x}</div>`
             }
         }
         //next month days
@@ -65,6 +97,7 @@ $(document).ready(function () {
             days += `<div class="day next-date">${x}</div>`
         }
         daysContainer.html(days)
+        addListner()
     }
     initCalendar()
 
@@ -146,4 +179,22 @@ $(document).ready(function () {
             addReser.classList.remove('rotate')
         }
     })
+    function addListner() {
+        const days = document.querySelectorAll('.day')
+        days.forEach((day) => {
+            day.addEventListener('click', (e) => {
+                activeDay = Number(e.target.innerHtml)
+                days.forEach((day)=>{
+                    day.classList.remove('active')
+                })
+                if(e.target.classList.contains('prev-date')){
+                    prevMonth()
+                    setTimeout(()=>{
+                        const days = document.querySelectorAll('.day')
+                         
+                    })
+                }
+            })
+        })
+    }
 });
