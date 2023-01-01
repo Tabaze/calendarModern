@@ -51,7 +51,8 @@ $(document).ready(function () {
                     id: 1,
                     client: "Test 1",
                     chambre: "10:00 AM",
-                    dateEntre:""
+                    dateEntre:"01-01-2023"
+                    
                 },
                 {
                     id: 2,
