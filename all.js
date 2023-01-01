@@ -7,7 +7,11 @@ $(document).ready(function () {
         todayBtn = $(".today-btn"),
         gotoBtn = $(".goto-btn"),
         dateInput = document.querySelector(".date-input"),
-        next = $(".next")
+        next = $(".next"),
+        addReser = document.querySelector('.add-event'),
+        reserContainer = document.querySelector(".add-event-wrapper"),
+        saveReser = $('.add-event-btn'),
+        btnClose = document.querySelector('.close')
 
     let today = new Date();
     let activeDay;
@@ -164,10 +168,7 @@ $(document).ready(function () {
         //invalid date
         alert("Date incorrect")
     })
-    const addReser = document.querySelector('.add-event'),
-        reserContainer = document.querySelector(".add-event-wrapper"),
-        saveReser = document.querySelector('.add-event-btn'),
-        btnClose = document.querySelector('.close')
+
 
     addReser.addEventListener('click', () => {
         reserContainer.classList.toggle('active')
@@ -261,4 +262,7 @@ $(document).ready(function () {
         }
         $('.events').html(event)
     }
+    saveReser.on('click',this,function(){
+        
+    })
 });
