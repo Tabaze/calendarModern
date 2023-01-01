@@ -85,6 +85,7 @@ $(document).ready(function () {
             //if day is today add class today
             if (x == new Date().getDate() && year == new Date().getFullYear() && month == new Date().getMonth()) {
                 activeDayEvent(x)
+                updateEvent(x)
                 if (event) {
                     days += `<div class="day today active event">${x}</div>`
                 }
@@ -193,6 +194,7 @@ $(document).ready(function () {
             day.addEventListener('click', (e) => {
                 activeDay = Number(e.target.innerHtml)
                 activeDayEvent(e.target.innerHTML)
+                updateEvent(e.target.innerHTML)
                 days.forEach((day) => {
                     day.classList.remove('active')
                 })
@@ -233,6 +235,30 @@ $(document).ready(function () {
     }
     function updateEvent(date) {
         let event = ""
-        
+        eventList.forEach((even) => {
+            if (date == even.day && month + 1 == even.month && year == even.year) {
+                even.events.forEach((eve) => {
+                    event += `
+                    <div class="event">
+                        <div class="title">
+                            <i class="fas fa-circle"></i>
+                            <h3 class="event-title">${eve.title}</h3>
+                        </div>
+                        <div class="event-time">
+                            <span class='event-time'>${eve.time}</span>
+                        </div>
+                    </div>
+                    `
+                })
+            }
+        })
+        if (event == "") {
+            event = `
+                <div class='no-event'>
+                    <h3>No Reservation</h3>
+                </div>
+            `
+        }
+        $('.events').html(event)
     }
 });
