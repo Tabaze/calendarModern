@@ -109,17 +109,32 @@ $(document).ready(function () {
                 dateInput.value = dateInput.value.slice(0, 2)
         }
     })
-    gotoBtn.on('click', this, function(){
+    gotoBtn.on('click', this, function () {
         const dateArr = dateInput.value.split('/')
         if (dateArr.length == 2) {
             if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length == 4) {
                 month = dateArr[0] - 1
-                year=dateArr[1]
+                year = dateArr[1]
                 initCalendar()
                 return
             }
         }
         //invalid date
         alert("Date incorrect")
+    })
+    const addReser = document.querySelector('.add-event'),
+        reserContainer = document.querySelector(".add-event-wrapper"),
+        saveReser = document.querySelector('.add-event-btn'),
+        btnClose = document.querySelector('.close')
+
+    addReser.addEventListener('click', () => {
+        reserContainer.classList.toggle('active')
+    })
+    btnClose.addEventListener('click', () => {
+        reserContainer.classList.remove('active')
+    })
+    document.addEventListener('click', (e) => {
+        if (e.target != addReser && !reserContainer.contains(e.target))
+            reserContainer.classList.remove('active')
     })
 });
