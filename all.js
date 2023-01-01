@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    $('select').select2()
     const calendar = $(".calendar"),
         date = $(".date"),
         daysContainer = $(".days"),
@@ -129,12 +129,21 @@ $(document).ready(function () {
 
     addReser.addEventListener('click', () => {
         reserContainer.classList.toggle('active')
+        if (reserContainer.classList.contains('active')) {
+            addReser.classList.add('rotate')
+        }
+        else {
+            addReser.classList.remove('rotate')
+        }
     })
     btnClose.addEventListener('click', () => {
         reserContainer.classList.remove('active')
+        addReser.classList.remove('rotate')
     })
     document.addEventListener('click', (e) => {
-        if (e.target != addReser && !reserContainer.contains(e.target))
+        if (e.target != addReser && !reserContainer.contains(e.target)) {
             reserContainer.classList.remove('active')
+            addReser.classList.remove('rotate')
+        }
     })
 });
