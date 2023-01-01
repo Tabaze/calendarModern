@@ -398,7 +398,7 @@ body {
 
 .add-event i {
   pointer-events: none;
-  transition: transform 0.2s ease;
+  transition: transform 0.4s ease;
 }
 .add-event.rotate i{
   transform: rotate(135deg);

@@ -28,6 +28,15 @@ $(document).ready(function () {
         "Novembre",
         "Décembre"
     ];
+    const dayFrench = {
+        Sun: "Dim",
+        Mon: "Lin",
+        Tue: "Mar",
+        Wed: "Mer",
+        Thu: "Jeu",
+        Fri: "Ven",
+        Sat: "Sam"
+    }
     const eventList = [
         {
             day: 1,
@@ -73,15 +82,14 @@ $(document).ready(function () {
                     event = true;
                 }
             })
-
-
             //if day is today add class today
             if (x == new Date().getDate() && year == new Date().getFullYear() && month == new Date().getMonth()) {
+                activeDayEvent(x)
                 if (event) {
-                    days += `<div class="day today event">${x}</div>`
+                    days += `<div class="day today active event">${x}</div>`
                 }
                 else
-                    days += `<div class="day today">${x}</div>`
+                    days += `<div class="day today active">${x}</div>`
             }
             //remaining of days
             else {
@@ -184,6 +192,7 @@ $(document).ready(function () {
         days.forEach((day) => {
             day.addEventListener('click', (e) => {
                 activeDay = Number(e.target.innerHtml)
+                activeDayEvent(e.target.innerHTML)
                 days.forEach((day) => {
                     day.classList.remove('active')
                 })
@@ -209,10 +218,21 @@ $(document).ready(function () {
                         })
                     }, 100)
                 }
-                else{
+                else {
                     e.target.classList.add('active')
                 }
             })
         })
+    }
+
+    function activeDayEvent(date) {
+        const day = new Date(year, month, date)
+        const dayname = dayFrench[day.toString().split(' ')[0]]
+        $(".event-day").html(dayname)
+        $('.event-date').html(date + ' ' + months[month] + " " + year)
+    }
+    function updateEvent(date) {
+        let event = ""
+        
     }
 });
