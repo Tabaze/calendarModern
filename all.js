@@ -198,6 +198,17 @@ $(document).ready(function () {
                         })
                     }, 100)
                 }
+                else if (e.target.classList.contains('next-date')) {
+                    nextMonth()
+                    console.log(e.target.innerHTML)
+                    setTimeout(() => {
+                        const days = document.querySelectorAll('.day')
+                        days.forEach((day) => {
+                            if (!day.classList.contains('next-date') && day.innerHTML == e.target.innerHTML)
+                                day.classList.add('active')
+                        })
+                    }, 100)
+                }
             })
         })
     }
