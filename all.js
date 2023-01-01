@@ -34,7 +34,7 @@ $(document).ready(function () {
     ];
     const dayFrench = {
         Sun: "Dim",
-        Mon: "Lin",
+        Mon: "Lun",
         Tue: "Mar",
         Wed: "Mer",
         Thu: "Jeu",
@@ -48,12 +48,15 @@ $(document).ready(function () {
             year: 2023,
             events: [
                 {
-                    title: "Event 1",
-                    time: "10:00 AM"
+                    id: 1,
+                    client: "Test 1",
+                    chambre: "10:00 AM",
+                    dateEntre:""
                 },
                 {
-                    title: "Event 1",
-                    time: "10:00 AM"
+                    id: 2,
+                    client: "Test 2",
+                    chambre: "10:00 AM"
                 },
             ]
         }
@@ -240,13 +243,13 @@ $(document).ready(function () {
             if (date == even.day && month + 1 == even.month && year == even.year) {
                 even.events.forEach((eve) => {
                     event += `
-                    <div class="event">
+                    <div class="event" id="${eve.id}">
                         <div class="title">
                             <i class="fas fa-circle"></i>
-                            <h3 class="event-title">${eve.title}</h3>
+                            <h3 class="event-title">${eve.client}</h3>
                         </div>
                         <div class="event-time">
-                            <span class='event-time'>${eve.time}</span>
+                            <span class='event-time'>${eve.chambre+" : "}</span>
                         </div>
                     </div>
                     `
@@ -262,7 +265,18 @@ $(document).ready(function () {
         }
         $('.events').html(event)
     }
-    saveReser.on('click',this,function(){
-        
+    saveReser.on('click', this, function () {
+        let chambre = $('#chambre').val()
+        let client = $('#client').val()
+        let modP = $('#modP').val()
+        let dateEntre = $('#dateEntre').val()
+        let dateSortie = $('#dateSortie').val()
+        if (dateEntre == "" || dateSortie == '') {
+            alert("")
+            return
+        }
+        else {
+
+        }
     })
 });

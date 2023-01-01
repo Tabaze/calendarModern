@@ -221,31 +221,31 @@
         </div>
         <div class="add-event-body">
           <div class="add-event-input">
-            <select class="event-name">
-              <option value="" selected>Etage 1</option>
-              <option value="">Etage 2</option>
-              <option value="">Etage 3</option>
-              <option value="">Etage 4</option>
+            <select class="event-name" id="chambre">
+              <option value="etage 1" selected>Etage 1</option>
+              <option value="etage 2">Etage 2</option>
+              <option value="etage 3">Etage 3</option>
+              <option value="etage 4">Etage 4</option>
             </select>
           </div>
           <div class="add-event-input">
-            <select class="event-name">
-              <option value="" selected>Ouail Barni</option>
-              <option value="">Test 2</option>
-              <option value="">Test 3</option>
-              <option value="">Test 4</option>
+            <select class="event-name" id="client">
+              <option value="1" selected>Ouail Barni</option>
+              <option value="2">Test 2</option>
+              <option value="3">Test 3</option>
+              <option value="4">Test 4</option>
             </select>
           </div>
           <div class="add-event-input">
-            <select class="event-name">
-              <option value="" selected>Espece</option>
-              <option value="">Carte Banquaire</option>
-              <option value="">Cheque</option>
+            <select class="event-name" id="modP">
+              <option value="Espece" selected>Espece</option>
+              <option value="Carte">Carte Banquaire</option>
+              <option value="Cheque">Cheque</option>
             </select>
           </div>
           <div class="add-event-input">
-            <input type="date" placeholder="Event Time From" class="event-time-from" />
-            <input type="date" placeholder="Event Time To" class="event-time-to" />
+            <input type="date" placeholder="Event Time From" class="event-time-from" id="dateEntre" />
+            <input type="date" placeholder="Event Time To" class="event-time-to"  id="dateSortie"/>
           </div>
         </div>
         <div class="add-event-footer">
@@ -259,6 +259,8 @@
   </div>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"></script>
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <script src="vendors-resources/js/jquery-3.6.0.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
