@@ -209,6 +209,9 @@ $(document).ready(function () {
                         })
                     }, 100)
                 }
+                else{
+                    e.target.classList.add('active')
+                }
             })
         })
     }
