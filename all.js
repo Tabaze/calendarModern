@@ -184,15 +184,19 @@ $(document).ready(function () {
         days.forEach((day) => {
             day.addEventListener('click', (e) => {
                 activeDay = Number(e.target.innerHtml)
-                days.forEach((day)=>{
+                days.forEach((day) => {
                     day.classList.remove('active')
                 })
-                if(e.target.classList.contains('prev-date')){
+                if (e.target.classList.contains('prev-date')) {
                     prevMonth()
-                    setTimeout(()=>{
+                    console.log(e.target.innerHTML)
+                    setTimeout(() => {
                         const days = document.querySelectorAll('.day')
-                         
-                    })
+                        days.forEach((day) => {
+                            if (!day.classList.contains('prev-date') && day.innerHTML == e.target.innerHTML)
+                                day.classList.add('active')
+                        })
+                    }, 100)
                 }
             })
         })
