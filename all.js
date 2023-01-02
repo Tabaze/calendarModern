@@ -9,7 +9,7 @@ $(document).ready(function () {
         dateInput = document.querySelector(".date-input"),
         next = $(".next"),
         addReser = document.querySelector('.add-event'),
-        reserContainer = document.querySelector(".add-event-wrapper"),
+        reserContainer = $(".add-event-wrapper"),
         saveReser = $('.add-event-btn'),
         btnClose = document.querySelector('.close')
 
@@ -49,15 +49,20 @@ $(document).ready(function () {
             events: [
                 {
                     id: 1,
-                    client: "Test 1",
-                    chambre: "10:00 AM",
-                    dateEntre:"01-01-2023"
-                    
+                    client: "Ouail Barni",
+                    chambre: "etage 1",
+                    dateEntre: "01-01-2023",
+                    dateSortie: "01-01-2023",
+                    modP: "Espece"
+
                 },
                 {
                     id: 2,
                     client: "Test 2",
-                    chambre: "10:00 AM"
+                    chambre: "etage 2",
+                    dateEntre: "01-01-2023",
+                    dateSortie: "01-01-2023",
+                    modP: "Cheque"
                 },
             ]
         }
@@ -175,8 +180,8 @@ $(document).ready(function () {
 
 
     addReser.addEventListener('click', () => {
-        reserContainer.classList.toggle('active')
-        if (reserContainer.classList.contains('active')) {
+        reserContainer.toggleClass('active')
+        if (reserContainer.hasClass('active')) {
             addReser.classList.add('rotate')
         }
         else {
@@ -184,20 +189,15 @@ $(document).ready(function () {
         }
     })
     btnClose.addEventListener('click', () => {
-        reserContainer.classList.remove('active')
+        reserContainer.removeClass('active')
         addReser.classList.remove('rotate')
     })
-    document.addEventListener('click', (e) => {
-        if (e.target != addReser && !reserContainer.contains(e.target)) {
-            reserContainer.classList.remove('active')
-            addReser.classList.remove('rotate')
-        }
-    })
+
     function addListner() {
         const days = document.querySelectorAll('.day')
         days.forEach((day) => {
             day.addEventListener('click', (e) => {
-                activeDay = Number(e.target.innerHtml)
+                activeDay = e.target.innerHTML
                 activeDayEvent(e.target.innerHTML)
                 updateEvent(e.target.innerHTML)
                 days.forEach((day) => {
@@ -250,7 +250,7 @@ $(document).ready(function () {
                             <h3 class="event-title">${eve.client}</h3>
                         </div>
                         <div class="event-time">
-                            <span class='event-time'>${eve.chambre+" : "}</span>
+                            <span class='event-time'>${eve.chambre + " : " + moment(eve.dateEntre).format('L') + " - " + moment(eve.dateSortie).format('L')}</span>
                         </div>
                     </div>
                     `
@@ -277,7 +277,59 @@ $(document).ready(function () {
             return
         }
         else {
-
+            const newEvent = {
+                id: 3,
+                client: client,
+                chambre: chambre,
+                dateEntre: moment(dateEntre, "DD-MM-YYYY"),
+                dateSortie: moment(dateSortie, "DD-MM-YYYY"),
+                modP: modP
+            }
+            let added = false;
+            if (eventList.length > 0) {
+                eventList.forEach((eve) => {
+                    if (activeDay == eve.day && eve.month == month + 1 && eve.year == year) {
+                        eve.events.push(newEvent)
+                        added = true;
+                    }
+                })
+            }
+            if (!added) {
+                eventList.push({
+                    day: activeDay,
+                    month: month + 1,
+                    year: year,
+                    events: [newEvent]
+                })
+            }
+            reserContainer.classList.remove('active')
+            $('#chambre').val("").trigger('change')
+            $('#client').val("").trigger('change')
+            $('#modP').val("").trigger('change')
+            $('#dateEntre').val('')
+            $('#dateSortie').val('')
+            updateEvent(activeDay)
+            const activeDayElem = $('.day.active');
+            if (!activeDayElem.hasClass('event'))
+                activeDayElem.addClass('event')
         }
+    })
+    $('.events').on('click', '.event', function () {
+        let id = $(this).attr('id')
+        reserContainer.addClass('active')
+        addReser.classList.add('rotate')
+        let activeEvent;
+        eventList.forEach((event) => {
+            event.events.forEach((eve) => {
+                if (eve.id == id) {
+                    activeEvent = eve
+                }
+            })
+        })
+        $('#chambre').val(activeEvent.chambre).trigger('change')
+        $('#client').val(activeEvent.client).trigger('change')
+        $('#modP').val(activeEvent.modP).trigger('change')
+        $('#dateEntre').val(moment(activeDay.dateEntre, 'MM/DD/YYYY'))
+        $('#dateSortie').val()
     })
 });
